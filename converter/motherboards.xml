@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<motherboards>
+    <motherboard number="0" manufacturer="Asus">
+        <productname>Asus prime z370a</productname>
+        <chipsettype>Intel Z370</chipsettype>
+        <ports>
+            <usb>5</usb>
+            <hdmi>1</hdmi>
+            <pcie>3</pcie>
+        </ports>
+        <date>17.08.2017</date>
+        <price>126,05</price>
+    </motherboard>
+    <motherboard number="1" manufacturer="Msi">
+        <productname >msi Z370 krait gaming</productname>
+        <chipsettype>Intel Z370</chipsettype>
+        <ports>
+            <usb>7</usb>
+            <hdmi>2</hdmi>
+            <pcie>4</pcie>
+        </ports>
+        <date>10.08.2017</date>
+        <price>126,89</price>
+    </motherboard>
+    <motherboard number="2" manufacturer="Msi">
+        <productname>msi B350 tomahawk</productname>
+        <chipsettype>AMD B350</chipsettype>
+        <ports>
+            <usb>5</usb>
+            <hdmi>1</hdmi>
+            <pcie>3</pcie>
+        </ports>
+        <date>17.08.2017</date>
+        <price>126,05</price>
+    </motherboard>
+    <motherboard number="3" manufacturer="Asus">
+        <productname>asus rog strix X370-F gaming</productname>
+        <chipsettype>AMD X370</chipsettype>
+        <ports>
+            <usb>5</usb>
+            <hdmi>1</hdmi>
+            <pcie>4</pcie>
+        </ports>
+        <date>09.02.2017</date>
+        <price>147,89</price>
+    </motherboard>
+</motherboards>
