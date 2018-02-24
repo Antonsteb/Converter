@@ -63,22 +63,25 @@ public class Converter {
                 }
             }
         }
-        final String fileName="motherboards.json";
-        Gson gson = new Gson();
-        System.out.println("---");
-        System.out.println(motherboards.get(0).date);
-        System.out.println("---");
-        Convert convert = new Convert(motherboards);
-        String JSON  = gson.toJson(convert);
-        System.out.println (JSON);
-        try (FileWriter fileWriter = new FileWriter(fileName)) {
-            fileWriter.write(JSON);
-        } catch (IOException ex) {
-            //Logger.getLogger(GsonExample.class.getName())
-             //       .log(Level.SEVERE, null, ex);
+        if (createJson(motherboards, "motherboards.json")){
+            System.out.println("successful");
+        } else {
+            System.out.println("error create json");
         }
     }
 
+    static boolean  createJson(ArrayList<Motherboard> motherboards, String jsonPath){
+        Gson gson = new Gson();
+        Convert convert = new Convert(motherboards);
+        try  {
+            FileWriter fileWriter = new FileWriter(jsonPath);
+            String JSON  = gson.toJson(convert);
+            fileWriter.write(JSON);
+        } catch (Exception exception) {
+            return false;
+        }
+        return true;
+    }
 
     public static class Convert {
         ArrayList<Motherboard> motherboards;
@@ -86,6 +89,4 @@ public class Converter {
             this.motherboards = motherboards;
         }
     }
-
-
 }
