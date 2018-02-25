@@ -26,38 +26,38 @@ public class Converter {
             int event = parser.next();
             if (event == XMLStreamConstants.START_ELEMENT){
                 currentElement = parser.getLocalName();
-                    if ("motherboard".equals(currentElement)) {
+                    if (Constans.MOTHER_BOARD.equals(currentElement)) {
                         motherboard = new Motherboard();
-                        motherboard.setNumber(Integer.parseInt(parser.getAttributeValue(null, "number")));
-                        motherboard.setManufacturer(parser.getAttributeValue(null, "manufacturer"));
+                        motherboard.setNumber(Integer.parseInt(parser.getAttributeValue(null, Constans.NUMBER)));
+                        motherboard.setManufacturer(parser.getAttributeValue(null, Constans.MANUFACTURER));
                     }
             }
             if (event == XMLStreamConstants.CHARACTERS){
-                String str= new String(parser.getText());
-                if (str.charAt(0)!=10)
+                String currentText= new String(parser.getText());
+                if (currentText.charAt(0)!=Constans.LINE_FEED)
                 switch (currentElement){
-                    case "productname":{
-                        motherboard.setProductName(str);
+                    case Constans.PRODUCT_NAME:{
+                        motherboard.setProductName(currentText);
                     }break;
-                    case "chipsettype":{
-                        motherboard.setChipsettype(str);
+                    case Constans.CHIPSET_TYPE:{
+                        motherboard.setChipsettype(currentText);
                     }break;
-                    case "usb":{
-                        motherboard.setUsb(Integer.parseInt(str));
+                    case Constans.USB:{
+                        motherboard.setUsb(Integer.parseInt(currentText));
                     }break;
-                    case "hdmi":{
-                        motherboard.setHdmi(Integer.parseInt(str));
+                    case Constans.HDMI:{
+                        motherboard.setHdmi(Integer.parseInt(currentText));
                     }break;
-                    case "pcie":{
-                        motherboard.setPcie(Integer.parseInt(str));
+                    case Constans.PSIe:{
+                        motherboard.setPcie(Integer.parseInt(currentText));
                     }break;
-                    case "date":{
-                        Date date = dateFormat.parse(str);
+                    case Constans.DATE:{
+                        Date date = dateFormat.parse(currentText);
                         motherboard.setDate(date);
                     }break;
-                    case "price":{
-                        str = str.replace(',', '.');
-                        motherboard.setPrice(Float.parseFloat(str));
+                    case Constans.PRICE:{
+                        currentText = currentText.replace(',', '.');
+                        motherboard.setPrice(Float.parseFloat(currentText));
                         motherboards.add(motherboard);
                     }break;
                 }
@@ -74,9 +74,10 @@ public class Converter {
         Gson gson = new Gson();
         Convert convert = new Convert(motherboards);
         try  {
-            FileWriter fileWriter = new FileWriter(jsonPath);
             String JSON  = gson.toJson(convert);
+            FileWriter fileWriter = new FileWriter(jsonPath);
             fileWriter.write(JSON);
+            fileWriter.close();
         } catch (Exception exception) {
             return false;
         }
