@@ -1,1 +1,1 @@
-java -jar converter.jar
+java -jar converter.jar motherboards.xml motherboards.json t manufacturer Asus

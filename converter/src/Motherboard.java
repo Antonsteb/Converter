@@ -1,15 +1,13 @@
-import java.util.Date;
-
 public class Motherboard {
     private String manufacturer;
     private String productName;
     private String chipsettype;
-    private int number;
-    private int usb;
-    private int hdmi;
-    private int pcie;
-    private float price;
-    Date date;
+    private String number;
+    private String usb;
+    private String hdmi;
+    private String pcie;
+    private String price;
+    private String date;
 
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
@@ -23,27 +21,61 @@ public class Motherboard {
         this.chipsettype = chipsettype;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
-    public void setUsb(int usb) {
+    public void setUsb(String usb) {
         this.usb = usb;
     }
 
-    public void setHdmi(int hdmi) {
+    public void setHdmi(String hdmi) {
         this.hdmi = hdmi;
     }
 
-    public void setPcie(int pcie) {
+    public void setPcie(String pcie) {
         this.pcie = pcie;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getValueVariableByName(String variableName){
+        switch (variableName){
+            case Constans.MANUFACTURER:{
+                return manufacturer;
+            }
+            case Constans.PRODUCT_NAME:{
+                return productName;
+            }
+            case Constans.CHIPSET_TYPE:{
+                return chipsettype;
+            }
+            case Constans.NUMBER:{
+                return number;
+            }
+            case Constans.USB:{
+                return usb;
+            }
+            case Constans.HDMI:{
+                return hdmi;
+            }
+            case Constans.PSIe:{
+                return pcie;
+            }
+            case Constans.DATE:{
+                return date;
+            }
+            case Constans.PRICE:{
+                return price;
+            }
+        }
+
+        return "";
     }
 }
