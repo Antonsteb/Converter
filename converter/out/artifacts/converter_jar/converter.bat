@@ -1,1 +1,1 @@
-java -jar converter.jar motherboards.xml motherboards.json date >= 17.08.2017
+java -jar converter.jar motherboards.xml motherboards.json date ">=" 17.08.2017

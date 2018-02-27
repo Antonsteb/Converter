@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 /**
  * The main class in which the conversion is performed
- *
  * @author  Steblyansky Anton
  * @version 1.0
  * @since   2018-02-27
@@ -24,6 +23,7 @@ public class Converter {
 
     /**
      * The input method to which the path to xml and json should be passed, as well as the parameters for comparison
+     * @param args example motherboards.xml motherboards.json date >= 17.08.2017
      */
 
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException, XMLStreamException, ParseException {
@@ -75,6 +75,13 @@ public class Converter {
 
     }
 
+    /**
+     * This method reads the attributes and adds them to a motherboard
+     * @param motherboard Current motherboard
+     * @param parser reads attributes from xml-file and add them to a motherboard
+     * @see XMLStreamReader
+     */
+
     private static void parseAttributes(Motherboard motherboard, XMLStreamReader parser){
         try {
             motherboard.setNumber(parser.getAttributeValue(null, Constans.NUMBER));
@@ -88,7 +95,13 @@ public class Converter {
         }
 
     }
-
+    /**
+     * This method reads the parameters and adds them to a motherboard
+     * @param currentElement The currently read parameter
+     * @param motherboard Current motherboard
+     * @param parser reads parameters from xml-file and add them to a motherboard
+     * @see XMLStreamReader
+     */
     private static boolean parseParameters(String currentElement, Motherboard motherboard, XMLStreamReader parser){
         String currentText = "";
         try {
@@ -123,6 +136,12 @@ public class Converter {
             }
             return false;
     }
+
+    /**
+     * This method creates a json file
+     * @param motherboards array of elements to be added to json
+     * @param jsonPath current path to the json file
+     */
 
    private static boolean  createJson(ArrayList<Motherboard> motherboards, String jsonPath){
         Gson gson = new Gson();

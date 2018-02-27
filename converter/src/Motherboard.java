@@ -1,3 +1,11 @@
+
+/**
+ * this class-structure is used for holding parameters of motherboard
+ * @author  Steblyansky Anton
+ * @version 1.0
+ * @since   2018-02-27
+ */
+
 public class Motherboard {
     private String manufacturer;
     private String productName;
