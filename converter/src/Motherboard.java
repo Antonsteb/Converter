@@ -78,4 +78,12 @@ public class Motherboard {
 
         return "";
     }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public String getDate() {
+        return date;
+    }
 }

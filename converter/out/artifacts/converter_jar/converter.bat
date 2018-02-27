@@ -1,1 +1,1 @@
-java -jar converter.jar motherboards.xml motherboards.json t manufacturer Asus
+java -jar converter.jar motherboards.xml motherboards.json date >= 17.08.2017

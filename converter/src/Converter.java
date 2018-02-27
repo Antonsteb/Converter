@@ -12,29 +12,36 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+/**
+ * The main class in which the conversion is performed
+ *
+ * @author  Steblyansky Anton
+ * @version 1.0
+ * @since   2018-02-27
+ */
+
 public class Converter {
+
+    /**
+     * The input method to which the path to xml and json should be passed, as well as the parameters for comparison
+     */
+
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException, XMLStreamException, ParseException {
-        String variableNameFiltr = "";
-        String valueVariableFiltr = "";
-        Filter filter = new Filter();
+        Filter filter = null;
         ArrayList<Motherboard> motherboards = new ArrayList<>();
         Motherboard motherboard = new Motherboard();
-        String currentElement="";
-        //SimpleDateFormat dateFormat =  new SimpleDateFormat("dd.MM.yyyy");
-        String xmlPath = "";
-        String jsonPath = "";
-        boolean filte = false;
+        String currentElement = "";
+        String xmlPath;
+        String jsonPath;
         try {
             xmlPath = args[0];
             jsonPath = args[1];
-            filte = false;
-            if (args[2].equals("t")){
-                filte = true;
-                variableNameFiltr = args[3];
-                valueVariableFiltr = args[4];
+            if (args.length>2){
+                filter = new Filter(args[2],args[3],args[4]);
             }
         }catch (Exception e){
             System.out.println("error reading parameters\n Check the correctness of the input parameters");
+            return;
         }
         try {
             XMLInputFactory factory = XMLInputFactory.newInstance();
@@ -50,14 +57,15 @@ public class Converter {
                 }
                 if (event == XMLStreamConstants.CHARACTERS) {
                     if (parseParameters(currentElement, motherboard, parser)) {
-                        if (!filte) motherboards.add(motherboard);
-                        else if (filter.filtration(motherboard, variableNameFiltr, valueVariableFiltr))
+                        if (filter == null) motherboards.add(motherboard);
+                        else if (filter.filtration(motherboard))
                             motherboards.add(motherboard);
                     }
                 }
             }
         }catch (Exception e){
             System.out.println("Error read file \n Check path to file, and file name or check xml-file structure");
+            return;
         }
         if (createJson(motherboards, jsonPath)){
             System.out.println("successful");
@@ -106,11 +114,9 @@ public class Converter {
                     motherboard.setPcie(currentText);
                 }break;
                 case Constans.DATE:{
-                    //Date date = dateFormat.parse(currentText);
                     motherboard.setDate(currentText);
                 }break;
                 case Constans.PRICE:{
-                    //currentText = currentText.replace(',', '.');
                     motherboard.setPrice(currentText);
                     return true;
                 }
@@ -134,7 +140,7 @@ public class Converter {
 
     public static class Convert {
         ArrayList<Motherboard> motherboards;
-        public Convert(ArrayList<Motherboard> motherboards) {
+        Convert(ArrayList<Motherboard> motherboards) {
             this.motherboards = motherboards;
         }
     }

@@ -1,13 +1,14 @@
-public class Constans {
-    public static final String MOTHER_BOARD = "motherboard";
-    public static final String NUMBER = "number";
-    public static final String MANUFACTURER = "manufacturer";
-    public static final String PRODUCT_NAME = "productname";
-    public static final String CHIPSET_TYPE = "chipsettype";
-    public static final String USB = "usb";
-    public static final String HDMI = "hdmi";
-    public static final String PSIe = "pcie";
-    public static final String DATE = "date";
-    public static final String PRICE = "price";
-    public static final char LINE_FEED = '\n';
+class Constans {
+    static final String MOTHER_BOARD = "motherboard";
+    static final String NUMBER = "number";
+    static final String MANUFACTURER = "manufacturer";
+    static final String PRODUCT_NAME = "productname";
+    static final String CHIPSET_TYPE = "chipsettype";
+    static final String USB = "usb";
+    static final String HDMI = "hdmi";
+    static final String PSIe = "pcie";
+    static final String DATE = "date";
+    static final String PRICE = "price";
+    static final char LINE_FEED = '\n';
+    static final String DATE_FORMAT = "dd.MM.yyyy";
 }
