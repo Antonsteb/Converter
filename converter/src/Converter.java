@@ -21,10 +21,7 @@ import java.util.ArrayList;
 
 public class Converter {
 
-    /**
-     * The input method to which the path to xml and json should be passed, as well as the parameters for comparison
-     * @param args example motherboards.xml motherboards.json date >= 17.08.2017
-     */
+    // MARK: - Main
 
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException, XMLStreamException, ParseException {
         Filter filter = null;
@@ -33,13 +30,14 @@ public class Converter {
         String currentElement = "";
         String xmlPath;
         String jsonPath;
+
         try {
             xmlPath = args[0];
             jsonPath = args[1];
-            if (args.length>2){
-                filter = new Filter(args[2],args[3],args[4]);
+            if (args.length > 2) {
+                filter = new Filter(args[2], args[3], args[4]);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("error reading parameters\n Check the correctness of the input parameters");
             return;
         }
@@ -63,11 +61,11 @@ public class Converter {
                     }
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error read file \n Check path to file, and file name or check xml-file structure");
             return;
         }
-        if (createJson(motherboards, jsonPath)){
+        if (createJson(motherboards, jsonPath)) {
             System.out.println("successful");
         } else {
             System.out.println("error create json");
@@ -85,12 +83,12 @@ public class Converter {
     private static void parseAttributes(Motherboard motherboard, XMLStreamReader parser){
         try {
             motherboard.setNumber(parser.getAttributeValue(null, Constans.NUMBER));
-        }catch (Exception e){
+        } catch (Exception e){
             System.out.println("Error parsing attribute number \n Check the structure of xml file");
         }
         try {
             motherboard.setManufacturer(parser.getAttributeValue(null, Constans.MANUFACTURER));
-        }catch (Exception e){
+        } catch (Exception e){
             System.out.println("Error parsing attribute manufacture \n Check the structure of xml file");
         }
 
@@ -102,34 +100,40 @@ public class Converter {
      * @param parser reads parameters from xml-file and add them to a motherboard
      * @see XMLStreamReader
      */
-    private static boolean parseParameters(String currentElement, Motherboard motherboard, XMLStreamReader parser){
+    private static boolean parseParameters(String currentElement, Motherboard motherboard, XMLStreamReader parser) {
         String currentText = "";
         try {
             currentText= parser.getText();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error parsing parameters \n Check the structure of xml file");
-        }
+        } 
         if (currentText.charAt(0)!=Constans.LINE_FEED)
             switch (currentElement){
-                case Constans.PRODUCT_NAME:{
+                case Constans.PRODUCT_NAME: {
                     motherboard.setProductName(currentText);
-                }break;
-                case Constans.CHIPSET_TYPE:{
+                } 
+                break;
+                case Constans.CHIPSET_TYPE: {
                     motherboard.setChipsettype(currentText);
-                }break;
-                case Constans.USB:{
+                }
+                break;
+                case Constans.USB: {
                     motherboard.setUsb(currentText);
-                }break;
-                case Constans.HDMI:{
+                } 
+                break;
+                case Constans.HDMI: {
                     motherboard.setHdmi(currentText);
-                }break;
-                case Constans.PSIe:{
+                }
+                break;
+                case Constans.PSIe: {
                     motherboard.setPcie(currentText);
-                }break;
-                case Constans.DATE:{
+                }
+                break;
+                case Constans.DATE: {
                     motherboard.setDate(currentText);
-                }break;
-                case Constans.PRICE:{
+                }
+                break;
+                case Constans.PRICE: {
                     motherboard.setPrice(currentText);
                     return true;
                 }
@@ -143,7 +147,7 @@ public class Converter {
      * @param jsonPath current path to the json file
      */
 
-   private static boolean  createJson(ArrayList<Motherboard> motherboards, String jsonPath){
+   private static boolean createJson(ArrayList<Motherboard> motherboards, String jsonPath) {
         Gson gson = new Gson();
         Convert convert = new Convert(motherboards);
         try  {

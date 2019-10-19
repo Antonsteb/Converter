@@ -47,9 +47,9 @@ public class Filter {
                     return !Objects.equals(valueVariableFilter, motherboard.getValueVariableByName(nameVariableFilter));
                 }
                 case "<": {
-                    if (nameVariableFilter.equals(Constans.PRICE) && (checkParameter())){
+                    if (nameVariableFilter.equals(Constans.PRICE) && (checkParameter())) {
                         return Float.parseFloat(motherboard.getPrice().replace(",", ".")) < Float.parseFloat(valueVariableFilter);
-                    } else if (nameVariableFilter.equals(Constans.DATE)){
+                    } else if (nameVariableFilter.equals(Constans.DATE)) {
                         Date date = parseDate(valueVariableFilter);
                         Date date1 = parseDate(motherboard.getDate());
                         return date != null && date1 != null && date1.before(date);
@@ -58,9 +58,9 @@ public class Filter {
                     }
                 }
             case "<=": {
-                if (nameVariableFilter.equals(Constans.PRICE) && (checkParameter())){
+                if (nameVariableFilter.equals(Constans.PRICE) && (checkParameter())) {
                     return Float.parseFloat(motherboard.getPrice().replace(",", ".")) <= Float.parseFloat(valueVariableFilter);
-                } else if (nameVariableFilter.equals(Constans.DATE)){
+                } else if (nameVariableFilter.equals(Constans.DATE)) {
                     Date date = parseDate(valueVariableFilter);
                     Date date1 = parseDate(motherboard.getDate());
                     return date != null && date1 != null && (date1.before(date) || date1.equals(date));
@@ -69,9 +69,9 @@ public class Filter {
                 }
             }
             case ">": {
-                if (nameVariableFilter.equals(Constans.PRICE) && (checkParameter())){
+                if (nameVariableFilter.equals(Constans.PRICE) && (checkParameter())) {
                     return Float.parseFloat(motherboard.getPrice().replace(",", ".")) > Float.parseFloat(valueVariableFilter);
-                } else if (nameVariableFilter.equals(Constans.DATE)){
+                } else if (nameVariableFilter.equals(Constans.DATE)) {
                     Date date = parseDate(valueVariableFilter);
                     Date date1 = parseDate(motherboard.getDate());
                     return date != null && date1 != null && date1.after(date);
@@ -93,7 +93,7 @@ public class Filter {
             }
             System.out.println("error reading parameters\n Check the correctness of the input parameters");
             return false;
-        } catch (Exception exception){
+        } catch (Exception exception) {
             System.out.println("error reading parameters\n Check the correctness of the input parameters");
             return false;
         }
@@ -104,7 +104,7 @@ public class Filter {
      * @return Returns true or false, according to the result of the checking
      */
 
-    private boolean checkParameter(){
+    private boolean checkParameter() {
         return (!nameVariableFilter.equals(Constans.MANUFACTURER)) && (!nameVariableFilter.equals(Constans.PRODUCT_NAME)) && (!nameVariableFilter.equals(Constans.CHIPSET_TYPE));
     }
     /**
@@ -112,7 +112,7 @@ public class Filter {
      * @param date String in format DATE_FORMAT {@link Constans}
      *
      */
-    private Date parseDate(String date){
+    private Date parseDate(String date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(Constans.DATE_FORMAT);
         try {
             return dateFormat.parse(date);
