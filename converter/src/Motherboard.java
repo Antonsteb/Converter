@@ -7,6 +7,9 @@
  */
 
 public class Motherboard {
+
+	// MARK: - Private properties
+
     private String manufacturer;
     private String productName;
     private String chipsettype;
@@ -16,6 +19,8 @@ public class Motherboard {
     private String pcie;
     private String price;
     private String date;
+
+    // MARK: - Getters / setters
 
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
@@ -53,33 +58,35 @@ public class Motherboard {
         this.date = date;
     }
 
+    // MARK: - Public calculated properties
+
     public String getValueVariableByName(String variableName){
-        switch (variableName){
-            case Constans.MANUFACTURER:{
+        switch (variableName) {
+            case Constans.MANUFACTURER: {
                 return manufacturer;
             }
-            case Constans.PRODUCT_NAME:{
+            case Constans.PRODUCT_NAME: {
                 return productName;
             }
-            case Constans.CHIPSET_TYPE:{
+            case Constans.CHIPSET_TYPE: {
                 return chipsettype;
             }
-            case Constans.NUMBER:{
+            case Constans.NUMBER: {
                 return number;
             }
-            case Constans.USB:{
+            case Constans.USB: {
                 return usb;
             }
-            case Constans.HDMI:{
+            case Constans.HDMI: {
                 return hdmi;
             }
-            case Constans.PSIe:{
+            case Constans.PSIe: {
                 return pcie;
             }
-            case Constans.DATE:{
+            case Constans.DATE: {
                 return date;
             }
-            case Constans.PRICE:{
+            case Constans.PRICE: {
                 return price;
             }
         }
